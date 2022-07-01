@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "NTH.Travel.Model/1.0.0": {
+        "runtime": {
+          "NTH.Travel.Model.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NTH.Travel.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
