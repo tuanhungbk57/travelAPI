@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NTH.Core\NTH.Core.csproj" />
+    <ProjectReference Include="..\NTH.Travel.Model\NTH.Travel.Model.csproj" />
+  </ItemGroup>
+
 </Project>

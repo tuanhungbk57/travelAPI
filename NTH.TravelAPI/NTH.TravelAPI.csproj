@@ -25,7 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NTH.Core\NTH.Core.csproj" />
+    <ProjectReference Include="..\NTH.Travel.BL\NTH.Travel.BL.csproj" />
     <ProjectReference Include="..\NTH.Travel.Model\NTH.Travel.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

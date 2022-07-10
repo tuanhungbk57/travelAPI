@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NTH.TravelAPI.Auth;
-using NTH.TravelAPI.Models;
+using NTH.Core.Data;
+using NTH.Core.Models;
 
 namespace NTH.TravelAPI.Controllers
 {
@@ -23,44 +23,44 @@ namespace NTH.TravelAPI.Controllers
 
         // GET: api/Homepages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vihomepage>>> GetVihomepage()
+        public async Task<ActionResult<IEnumerable<Homepage>>> GetHomepages()
         {
-          if (_context.Vihomepage == null)
+          if (_context.Homepages == null)
           {
               return NotFound();
           }
-            return await _context.Vihomepage.ToListAsync();
+            return await _context.Homepages.ToListAsync();
         }
 
         // GET: api/Homepages/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Vihomepage>> GetVihomepage(uint id)
+        public async Task<ActionResult<Homepage>> GetHomepage(int id)
         {
-          if (_context.Vihomepage == null)
+          if (_context.Homepages == null)
           {
               return NotFound();
           }
-            var vihomepage = await _context.Vihomepage.FindAsync(id);
+            var homepage = await _context.Homepages.FindAsync(id);
 
-            if (vihomepage == null)
+            if (homepage == null)
             {
                 return NotFound();
             }
 
-            return vihomepage;
+            return homepage;
         }
 
         // PUT: api/Homepages/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVihomepage(uint id, Vihomepage vihomepage)
+        public async Task<IActionResult> PutHomepage(int id, Homepage homepage)
         {
-            if (id != vihomepage.Id)
+            if (id != homepage.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(vihomepage).State = EntityState.Modified;
+            _context.Entry(homepage).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace NTH.TravelAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VihomepageExists(id))
+                if (!HomepageExists(id))
                 {
                     return NotFound();
                 }
@@ -84,41 +84,41 @@ namespace NTH.TravelAPI.Controllers
         // POST: api/Homepages
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Vihomepage>> PostVihomepage(Vihomepage vihomepage)
+        public async Task<ActionResult<Homepage>> PostHomepage(Homepage homepage)
         {
-          if (_context.Vihomepage == null)
+          if (_context.Homepages == null)
           {
-              return Problem("Entity set 'ApplicationDbContext.Vihomepage'  is null.");
+              return Problem("Entity set 'ApplicationDbContext.Homepages'  is null.");
           }
-            _context.Vihomepage.Add(vihomepage);
+            _context.Homepages.Add(homepage);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVihomepage", new { id = vihomepage.Id }, vihomepage);
+            return CreatedAtAction("GetHomepage", new { id = homepage.Id }, homepage);
         }
 
         // DELETE: api/Homepages/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVihomepage(uint id)
+        public async Task<IActionResult> DeleteHomepage(int id)
         {
-            if (_context.Vihomepage == null)
+            if (_context.Homepages == null)
             {
                 return NotFound();
             }
-            var vihomepage = await _context.Vihomepage.FindAsync(id);
-            if (vihomepage == null)
+            var homepage = await _context.Homepages.FindAsync(id);
+            if (homepage == null)
             {
                 return NotFound();
             }
 
-            _context.Vihomepage.Remove(vihomepage);
+            _context.Homepages.Remove(homepage);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool VihomepageExists(uint id)
+        private bool HomepageExists(int id)
         {
-            return (_context.Vihomepage?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Homepages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

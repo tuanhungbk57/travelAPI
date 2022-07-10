@@ -2,19 +2,38 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NTH.TravelAPI.Auth;
+using NTH.Core.Data;
+using NTH.Core.Database;
+using NTH.Core.Helper;
+using NTH.Travel.BL.Contracts;
+using NTH.Travel.BL.Repository;
+using NTH.Travel.BL.Service;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<IContactRepo, ContactRepo>();
+builder.Services.AddScoped<IDbUtil, DbUtil>();
+builder.Services.AddTransient<IUploadService, UploadService>();
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("devCorsPolicy", builder => {
+        //builder.WithOrigins("http://localhost:800").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        //builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+        //builder.SetIsOriginAllowed(origin => true);
+    });
+});
 
 // For Entity Framework
 var connectionString = configuration.GetConnectionString("ConnStr");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
+//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddSingleton<ApplicationDbContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,6 +71,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("devCorsPolicy");
 }
 
 app.UseHttpsRedirection();

@@ -43,11 +43,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.6, )"
             },
             "Microsoft.AspNetCore.Cryptography.KeyDerivation": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.6, )"
             },
@@ -67,9 +75,17 @@
               "target": "Package",
               "version": "[6.0.6, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.29, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
             }
           },
           "imports": [
