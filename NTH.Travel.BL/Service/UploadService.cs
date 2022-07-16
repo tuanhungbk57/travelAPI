@@ -25,14 +25,14 @@ namespace NTH.Travel.BL.Service
             _context = context;
             _dbUtil = dbUtil;
         }
-        public async Task<int> Upload(int folderID, IFormFileCollection files, int folderType = 0)
+        public async Task<int> Upload(int folderID, IFormFileCollection files, int folderType = 0, int parentID  =0)
         {
             try
             {
                 //var folderName = Path.GetFullPath("F:\\test\\Images\\test01 02 023");
                 //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string folderName = await _dbUtil.ExecuteScala<string>("Folder_GetNameByID", new { folderId = folderID });
-                var folderFullPath = await BuildPath(folderName, folderType);
+                var folderFullPath =  BuildPath(folderName, folderType);
 
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderFullPath);
                 if (!Directory.Exists(folderFullPath))
@@ -52,7 +52,7 @@ namespace NTH.Travel.BL.Service
                         {
                             file.CopyTo(stream);
                         }
-                        await StoreImageToDb(folderID, folderType, folderName, fileName);
+                        await StoreImageToDb(folderID, folderType, folderName, fileName, parentID);
                     }
                     else
                     {
@@ -74,7 +74,7 @@ namespace NTH.Travel.BL.Service
         /// <param name="folderId">ID của folder chứa ảnh</param>
         /// <param name="folderType">Loại foler (des or trip)</param>
         /// <returns></returns>
-        private async Task<string> BuildPath(string folderName, int folderType)
+        public string BuildPath(string folderName, int? folderType = 0)
         {
             var path = "";
             var routPath = Configuration["Folder:rootPath"];
@@ -89,7 +89,7 @@ namespace NTH.Travel.BL.Service
             return path;
         }
 
-        private async Task<int> StoreImageToDb( int folderId, int folderType, string folderName, string imgName)
+        public async Task<int> StoreImageToDb( int folderId, int folderType, string folderName, string imgName, int parentID)
         {
             FolderImage folderimg = new FolderImage
             {
@@ -97,6 +97,7 @@ namespace NTH.Travel.BL.Service
                 FolderName = folderName,
                 FolderType = folderType,
                 ImageName = imgName,
+                ParentId = parentID
             };
             //_context.Entry(folderimg).State = EntityState.Modified;
             _context.FolderImages.Add(folderimg);

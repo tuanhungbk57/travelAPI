@@ -12,6 +12,7 @@ namespace NTH.Core.Models
         public string? FolderName { get; set; }
         public string? ImageName { get; set; }
         public int? FolderId { get; set; }
+        public int? ParentId { get; set; }
         public int? FolderType { get; set; }
     }
 }
