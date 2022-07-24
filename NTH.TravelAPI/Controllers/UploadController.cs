@@ -58,5 +58,23 @@ namespace NTH.TravelAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
+
+        [HttpPost("{type}/{folerId}/{parentId}"), DisableRequestSizeLimit]
+        public async Task<IActionResult> UploadTrip(int type, int folerId, int parentId)
+        {
+            try
+            {
+                var files = Request.Form.Files;
+
+                await _uploadService.Upload(folerId, files, type, parentId);
+
+                return Ok("Success");
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
     }
 }

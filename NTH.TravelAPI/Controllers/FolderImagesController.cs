@@ -56,6 +56,28 @@ namespace NTH.TravelAPI.Controllers
         }
 
         /// <summary>
+        /// Lấy danh sách ảnh của Gen
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/gen")]
+        public async Task<ActionResult<IEnumerable<FolderImage>>> GetImageByGen(uint id)
+        {
+            if (_context.FolderImages == null)
+            {
+                return NotFound();
+            }
+            var folderImages = await _context.FolderImages.Where<FolderImage>(item => ((uint)item.FolderId == id)).ToListAsync();
+
+            if (folderImages == null)
+            {
+                return NotFound();
+            }
+
+            return folderImages;
+        }
+
+        /// <summary>
         /// Lấy danh sách ảnh của Trip theo Des
         /// </summary>
         /// <param name="desId"></param>

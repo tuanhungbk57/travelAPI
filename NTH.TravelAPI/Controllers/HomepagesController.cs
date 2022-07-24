@@ -21,26 +21,16 @@ namespace NTH.TravelAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Homepages
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Homepage>>> GetHomepages()
-        {
-          if (_context.Homepages == null)
-          {
-              return NotFound();
-          }
-            return await _context.Homepages.ToListAsync();
-        }
 
         // GET: api/Homepages/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Homepage>> GetHomepage(int id)
+        [HttpGet("{lang}")]
+        public async Task<ActionResult<IEnumerable<Homepage>>> GetHomepage(string lang)
         {
           if (_context.Homepages == null)
           {
               return NotFound();
           }
-            var homepage = await _context.Homepages.FindAsync(id);
+            var homepage = await _context.Homepages.Where<Homepage>(item => (item.Lang == lang)).ToListAsync();
 
             if (homepage == null)
             {
@@ -84,37 +74,19 @@ namespace NTH.TravelAPI.Controllers
         // POST: api/Homepages
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Homepage>> PostHomepage(Homepage homepage)
+        public async Task<int> PostHomepage(Homepage homepage)
         {
           if (_context.Homepages == null)
           {
-              return Problem("Entity set 'ApplicationDbContext.Homepages'  is null.");
+                //return Problem("Entity set 'ApplicationDbContext.Homepages'  is null.");
+                return -1;
           }
             _context.Homepages.Add(homepage);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetHomepage", new { id = homepage.Id }, homepage);
+            return homepage.Id;
         }
 
-        // DELETE: api/Homepages/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHomepage(int id)
-        {
-            if (_context.Homepages == null)
-            {
-                return NotFound();
-            }
-            var homepage = await _context.Homepages.FindAsync(id);
-            if (homepage == null)
-            {
-                return NotFound();
-            }
-
-            _context.Homepages.Remove(homepage);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
         private bool HomepageExists(int id)
         {

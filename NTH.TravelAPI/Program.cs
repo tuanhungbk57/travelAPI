@@ -33,7 +33,7 @@ builder.Services.AddCors(options =>
 // For Entity Framework
 var connectionString = configuration.GetConnectionString("ConnStr");
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-builder.Services.AddSingleton<ApplicationDbContext>();
+builder.Services.AddScoped<ApplicationDbContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -76,8 +76,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

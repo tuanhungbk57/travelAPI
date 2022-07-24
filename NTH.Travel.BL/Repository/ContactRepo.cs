@@ -32,7 +32,7 @@ namespace NTH.Travel.BL.Repository
 
         public async Task<IEnumerable<Contact>> GetContactsList()
         {
-            var procedureName = "Contact_GetAll";
+            var procedureName = "Proc_Contact_GetAll";
             //var parameters = new DynamicParameters();
             //parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);
             using (var connection = _context.CreateConnection())

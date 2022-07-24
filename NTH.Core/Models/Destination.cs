@@ -10,7 +10,8 @@ namespace NTH.Core.Models
     {
         public int Id { get; set; }
         public string? Lang { get; set; }
-        public string? Country { get; set; }
+        public string? Title { get; set; }
+        public string? DestinationName { get; set; }
         public string? BannerImage { get; set; }
         public string? BannerText { get; set; }
         public string? Thumbnail { get; set; }
@@ -20,5 +21,9 @@ namespace NTH.Core.Models
         public string? IndividualTripAdditional { get; set; }
         public string? IndividualTripContent { get; set; }
         public string? TripTitle { get; set; }
+        public int? MasterId { get; set; }
+        public string? DestinationURL { get; set; }
+
+
     }
 }

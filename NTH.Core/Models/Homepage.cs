@@ -11,7 +11,7 @@ namespace NTH.Core.Models
         public int Id { get; set; }
         public string? Lang { get; set; }
         public string? Title { get; set; }
-        public string? ImageUrl { get; set; }
+        public string? ImageURL { get; set; }
         /// <summary>
         /// Sơ lược về trang chủ du lịch
         /// </summary>
@@ -52,5 +52,8 @@ namespace NTH.Core.Models
         public string? VideoTitle { get; set; }
         public string? VideoScript { get; set; }
         public string? PillarTravel { get; set; }
+        public string? PilarTravelAdditional { get; set; }
+        public int? Status { get; set; }
+        
     }
 }

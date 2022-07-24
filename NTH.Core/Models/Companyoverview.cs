@@ -10,7 +10,6 @@ namespace NTH.Core.Models
     {
         public int Id { get; set; }
         public string? Lang { get; set; }
-        public string? CeoAvatar { get; set; }
         /// <summary>
         /// Câu quote của công ty
         /// </summary>
@@ -23,21 +22,25 @@ namespace NTH.Core.Models
         /// Chuyên đề
         /// </summary>
         public string? Specialism { get; set; }
+        public string? specialismImage { get; set; }
         public string? SpecialismContent { get; set; }
         /// <summary>
         /// Dịch vụ cá nhân
         /// </summary>
         public string? PersonalService { get; set; }
+        public string? PersonalServiceImage { get; set; }
         public string? PersonalServiceContent { get; set; }
         /// <summary>
         /// Du lịch tùy chỉnh
         /// </summary>
         public string? CustomizeTour { get; set; }
+        public string? CustomizeTourImage { get; set; }
         public string? CustomizeTourContent { get; set; }
         /// <summary>
         /// Du lịch có trách nhiệm
         /// </summary>
         public string? ResponsibleTravel { get; set; }
+        public string? ResponsibleTravelImage { get; set; }
         public string? ResponsibleTravelContent { get; set; }
         /// <summary>
         /// Tiêu đề mời liên hệ
@@ -53,5 +56,9 @@ namespace NTH.Core.Models
         /// </summary>
         public string? NewsletterContent { get; set; }
         public string? MoreInfo { get; set; }
+        public string? EndTitle { get; set; }
+        public string? EndContent { get; set; }
+        public int? Status { get; set; }
+
     }
 }

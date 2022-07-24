@@ -32,6 +32,26 @@ namespace NTH.TravelAPI.Controllers
             return await _context.Folders.ToListAsync();
         }
 
+        [HttpGet("des")]
+        public async Task<ActionResult<IEnumerable<Folder>>> GetDesFolders()
+        {
+            if (_context.Folders == null)
+            {
+                return NotFound();
+            }
+            return await _context.Folders.Where<Folder>(item => item.Type == 0).ToListAsync();
+        }
+
+        [HttpGet("general")]
+        public async Task<ActionResult<IEnumerable<Folder>>> GetGenFolders()
+        {
+            if (_context.Folders == null)
+            {
+                return NotFound();
+            }
+            return await _context.Folders.Where<Folder>(item => item.Type == 2).ToListAsync();
+        }
+
         // GET: api/Folders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Folder>> GetFolder(uint id)
@@ -48,6 +68,24 @@ namespace NTH.TravelAPI.Controllers
             }
 
             return folder;
+        }
+
+        // GET: api/Folders/5
+        [HttpGet("{parentId}/parent")]
+        public async Task<ActionResult<IEnumerable<Folder>>> GetFolderByParent(int parentId)
+        {
+            if (_context.Folders == null)
+            {
+                return NotFound();
+            }
+            var folders = await _context.Folders.Where<Folder>(item => (item.ParentId == parentId)).ToListAsync();
+
+            if (folders == null)
+            {
+                return NotFound();
+            }
+
+            return folders;
         }
 
         // PUT: api/Folders/5

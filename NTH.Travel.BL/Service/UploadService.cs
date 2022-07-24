@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace NTH.Travel.BL.Service
 {
-    public class UploadService: IUploadService
+    public class UploadService : IUploadService
     {
         private readonly IConfiguration Configuration;
         private readonly ApplicationDbContext _context;
@@ -25,14 +25,14 @@ namespace NTH.Travel.BL.Service
             _context = context;
             _dbUtil = dbUtil;
         }
-        public async Task<int> Upload(int folderID, IFormFileCollection files, int folderType = 0, int parentID  =0)
+        public async Task<int> Upload(int folderID, IFormFileCollection files, int folderType = 0, int parentID = 0)
         {
             try
             {
                 //var folderName = Path.GetFullPath("F:\\test\\Images\\test01 02 023");
                 //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 string folderName = await _dbUtil.ExecuteScala<string>("Folder_GetNameByID", new { folderId = folderID });
-                var folderFullPath =  BuildPath(folderName, folderType);
+                var folderFullPath = BuildPath(folderName, folderType);
 
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderFullPath);
                 if (!Directory.Exists(folderFullPath))
@@ -78,22 +78,27 @@ namespace NTH.Travel.BL.Service
         {
             var path = "";
             var routPath = Configuration["Folder:rootPath"];
-            
+
             string folderTypeName = Configuration["Folder:Tri"];
             if (folderType == 0)
             {
                 folderTypeName = Configuration["Folder:Des"];
-            } else if (folderType == 1) folderTypeName = Configuration["Folder:Tri"];
+            }
+            else if (folderType == 1)
+            {
+                folderTypeName = Configuration["Folder:Tri"];
+            }
+            else if (folderType == 2) folderTypeName = Configuration["Folder:Gen"];
 
-             path = $"{routPath}\\{folderTypeName}\\{folderName}";
+            path = $"{routPath}\\{folderTypeName}\\{folderName}";
             return path;
         }
 
-        public async Task<int> StoreImageToDb( int folderId, int folderType, string folderName, string imgName, int parentID)
+        public async Task<int> StoreImageToDb(int folderId, int folderType, string folderName, string imgName, int parentID)
         {
             FolderImage folderimg = new FolderImage
             {
-                FolderId =  folderId,
+                FolderId = folderId,
                 FolderName = folderName,
                 FolderType = folderType,
                 ImageName = imgName,

@@ -13,7 +13,7 @@ namespace NTH.Core.Data
 {
     public partial class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-       
+
         public ApplicationDbContext()
         {
         }
@@ -62,6 +62,15 @@ namespace NTH.Core.Data
         public virtual DbSet<Folder> Folders { get; set; } = null!;
         public virtual DbSet<FolderImage> FolderImages { get; set; } = null!;
         public virtual DbSet<Vihomepage> Vihomepages { get; set; } = null!;
+        public virtual DbSet<DestinationMaster> DestinationMasters { get; set; } = null!;
+        public virtual DbSet<Tour> Tours { get; set; } = null!;
+        public virtual DbSet<Tourdetail> TourDetails { get; set; } = null!;
+        public virtual DbSet<ServiceContact> ServiceContacts { get; set; } = null!;
+        public virtual DbSet<Communication> Communications { get; set; } = null!;
+        public virtual DbSet<Newsletter> Newsletters { get; set; } = null!;
+        public virtual DbSet<Team> Teams { get; set; } = null!;
+        public virtual DbSet<DestinationInfo> DestinationInfos { get; set; } = null!;
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -205,7 +214,6 @@ namespace NTH.Core.Data
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8mb3");
 
-                entity.Property(e => e.CeoAvatar).HasMaxLength(255);
 
                 entity.Property(e => e.ContactMe)
                     .HasColumnType("text")
@@ -292,7 +300,7 @@ namespace NTH.Core.Data
                 entity.HasComment("Thông tin người đăng ký du lịch");
 
                 entity.Property(e => e.ContactRequest)
-                    .HasMaxLength(255)
+                    .HasMaxLength(5000)
                     .HasComment("Yêu cầu của người booking");
 
                 entity.Property(e => e.Country).HasMaxLength(255);
@@ -331,7 +339,7 @@ namespace NTH.Core.Data
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8mb3");
 
-                entity.Property(e => e.Country)
+                entity.Property(e => e.Title)
                     .HasColumnType("text")
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8mb3");
@@ -414,7 +422,7 @@ namespace NTH.Core.Data
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8mb3");
 
-                entity.Property(e => e.ImageUrl)
+                entity.Property(e => e.ImageURL)
                     .HasMaxLength(300)
                     .HasColumnName("ImageURL");
 
@@ -540,15 +548,10 @@ namespace NTH.Core.Data
 
                 entity.HasComment("Các chuyến đi");
 
-                entity.Property(e => e.BannerImage).HasColumnType("text");
+                entity.Property(e => e.ImageURL).HasMaxLength(255);
 
-                entity.Property(e => e.BannerText).HasColumnType("text");
+                entity.Property(e => e.TripURL).HasMaxLength(255);
 
-                entity.Property(e => e.IndividualTripTitle).HasColumnType("text");
-
-                entity.Property(e => e.Lang).HasMaxLength(255);
-
-                entity.Property(e => e.Thumbnail).HasColumnType("text");
 
                 entity.Property(e => e.TripName).HasColumnType("text");
             });
@@ -559,13 +562,7 @@ namespace NTH.Core.Data
 
                 entity.HasComment("Chi tiết chuyến đi");
 
-                entity.Property(e => e.BannerImage).HasMaxLength(555);
-
-                entity.Property(e => e.BannerText).HasColumnType("text");
-
-                entity.Property(e => e.Description).HasColumnType("text");
-
-                entity.Property(e => e.Thumbnail).HasMaxLength(255);
+                entity.Property(e => e.ImageURL).HasMaxLength(555);
 
                 entity.Property(e => e.TripDetailName).HasColumnType("text");
             });
@@ -583,10 +580,12 @@ namespace NTH.Core.Data
                     .HasColumnName("ImageURL");
             });
 
-            modelBuilder.Entity<Folder>(entity => {
+            modelBuilder.Entity<Folder>(entity =>
+            {
                 entity.ToTable("folder");
             });
-            modelBuilder.Entity<FolderImage>(entity => {
+            modelBuilder.Entity<FolderImage>(entity =>
+            {
                 entity.ToTable("folderimage");
             });
 
@@ -643,6 +642,41 @@ namespace NTH.Core.Data
                     .UseCollation("utf8_general_ci")
                     .HasCharSet("utf8mb3");
             });
+            modelBuilder.Entity<DestinationMaster>(entity =>
+            {
+                entity.ToTable("destinationmaster");
+            });
+            modelBuilder.Entity<Tour>(entity =>
+            {
+                entity.ToTable("tour");
+            });
+            modelBuilder.Entity<Tourdetail>(entity =>
+            {
+                entity.ToTable("tourdetail");
+            });
+            modelBuilder.Entity<ServiceContact>(entity =>
+            {
+                entity.ToTable("servicecontact");
+            });
+            modelBuilder.Entity<Communication>(entity =>
+            {
+                entity.ToTable("communication");
+            });
+            modelBuilder.Entity<Newsletter>(entity =>
+            {
+                entity.ToTable("newsletter");
+            });
+            modelBuilder.Entity<Team>(entity =>
+            {
+                entity.ToTable("team");
+            });
+            modelBuilder.Entity<DestinationInfo>(entity =>
+            {
+                entity.ToTable("destinationinfo");
+            });
+
+            
+
 
             OnModelCreatingPartial(modelBuilder);
             base.OnModelCreating(modelBuilder);

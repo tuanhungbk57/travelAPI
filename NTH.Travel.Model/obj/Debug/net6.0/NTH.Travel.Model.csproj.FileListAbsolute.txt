@@ -1,0 +1,12 @@
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\bin\Debug\net6.0\NTH.Travel.Model.deps.json
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\bin\Debug\net6.0\NTH.Travel.Model.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\bin\Debug\net6.0\ref\NTH.Travel.Model.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\bin\Debug\net6.0\NTH.Travel.Model.pdb
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.csproj.AssemblyReference.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.GeneratedMSBuildEditorConfig.editorconfig
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.AssemblyInfoInputs.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.AssemblyInfo.cs
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.csproj.CoreCompileInputs.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\ref\NTH.Travel.Model.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.Model\obj\Debug\net6.0\NTH.Travel.Model.pdb
