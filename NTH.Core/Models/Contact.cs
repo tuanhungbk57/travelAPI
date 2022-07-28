@@ -29,7 +29,7 @@ namespace NTH.Core.Models
         /// Kênh tiềm năng thu hút người dùng
         /// </summary>
         public string? PotentialChannel { get; set; }
-        public string? CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
     }
 }

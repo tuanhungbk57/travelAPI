@@ -62,8 +62,8 @@ namespace NTH.TravelAPI.Controllers
             {
                 return NotFound();
             }
-            string fullPath = desPath + "/" + tripPath + "/" + tourPath;
-            var tour = await _context.Tours.Where<Tour>(item => item.TourPath == fullPath).FirstOrDefaultAsync();
+            string fullPath = desPath + "/" + tripPath;
+            var tour = await _context.Tours.Where<Tour>(item => item.TourPath == tourPath && item.TripPath == fullPath).FirstOrDefaultAsync();
 
             if (tour == null)
             {
