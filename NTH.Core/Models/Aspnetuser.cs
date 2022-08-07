@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NTH.Core.Models
 {
+    [Table("aspnetusers")]
     public partial class Aspnetuser
     {
         public Aspnetuser()

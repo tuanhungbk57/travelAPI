@@ -1,0 +1,24 @@
+services:
+    mysql:
+        image: mysql:8
+        restart: always
+        ports:
+          - 3306:3306
+        volumes:
+          - /data/mysql:/var/lib/mysql
+        environment:
+          - MYSQL_ROOT_PASSWORD=12345678@Abc
+          - MYSQL_PASSWORD=12345678@Abc
+          - MYSQL_USER=lantran
+          - MYSQL_DATABASE=travel
+    api:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 5000:80
+        volumes:
+            - "/nth/images:/data/Images"
+        restart: always
+        depends_on: 
+            - mysql

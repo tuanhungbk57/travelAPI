@@ -23,13 +23,13 @@ namespace NTH.TravelAPI.Controllers
 
         // GET: api/Companyinfoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Companyinfo>>> GetCompanyinfos()
+        public async Task<ActionResult<Companyinfo>> GetCompanyinfos()
         {
           if (_context.Companyinfos == null)
           {
               return NotFound();
           }
-            return await _context.Companyinfos.ToListAsync();
+            return await _context.Companyinfos.FirstOrDefaultAsync();
         }
 
         // GET: api/Companyinfoes/5

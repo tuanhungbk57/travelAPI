@@ -14,5 +14,7 @@ namespace NTH.Core.Models
         public string? Note { get; set; }
         public string? Phone { get; set; }
         public bool? IsSubscribe { get; set; }
+        public DateTime? CreatedDate { get; set; }
+
     }
 }

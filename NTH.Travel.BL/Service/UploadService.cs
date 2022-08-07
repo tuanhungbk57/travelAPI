@@ -90,7 +90,7 @@ namespace NTH.Travel.BL.Service
             }
             else if (folderType == 2) folderTypeName = Configuration["Folder:Gen"];
 
-            path = $"{routPath}\\{folderTypeName}\\{folderName}";
+            path = $@"{routPath}/{folderTypeName}/{folderName}";
             return path;
         }
 

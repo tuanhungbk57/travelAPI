@@ -1,0 +1,17 @@
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Travel.BL.deps.json
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Travel.BL.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\ref\NTH.Travel.BL.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Travel.BL.pdb
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Core.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Travel.Model.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Core.pdb
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\bin\Release\net6.0\NTH.Travel.Model.pdb
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.csproj.AssemblyReference.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.GeneratedMSBuildEditorConfig.editorconfig
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.AssemblyInfoInputs.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.AssemblyInfo.cs
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.csproj.CoreCompileInputs.cache
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.csproj.CopyComplete
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\ref\NTH.Travel.BL.dll
+G:\2022\Project\API\NTH.Travel\NTH.Travel.BL\obj\Release\net6.0\NTH.Travel.BL.pdb

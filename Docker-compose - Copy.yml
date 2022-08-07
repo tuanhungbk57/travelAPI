@@ -1,0 +1,9 @@
+services:
+    api:
+        image: api
+        build: .
+        ports:
+            - 5000:80
+        volumes:
+            - "F:/test:/app/published-app"
+        restart: always

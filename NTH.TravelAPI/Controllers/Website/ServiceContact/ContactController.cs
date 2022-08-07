@@ -52,8 +52,8 @@ namespace NTH.TravelAPI.Controllers.Website.ServiceContact
         /// </summary>
         /// <param name="contact"></param>
         /// <returns></returns>
-        [HttpPost("/subscribe")]
-        public async Task<object> Get(Subscribe subscribe)
+        [HttpPost("subscribe")]
+        public async Task<object> SubscribeNewsletter(Subscribe subscribe)
         {
             var procedureName = "Proc_Subscribe_Insert";
             //var parameters = new DynamicParameters();
@@ -66,6 +66,7 @@ namespace NTH.TravelAPI.Controllers.Website.ServiceContact
                     v_email = subscribe.Email,
                     v_phone = subscribe.Phone,
                     v_note = subscribe.Note,
+                    v_createdDate = DateTime.Now
                 };
                 var des = await connection.ExecuteAsync
                     (procedureName, obj, commandType: CommandType.StoredProcedure);

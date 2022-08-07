@@ -36,7 +36,7 @@ namespace NTH.Core.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=12345678@Abc;database=travel", ServerVersion.AutoDetect("server=localhost;port=3306;user=root;password=12345678@Abc;database=travel"));
+                optionsBuilder.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString));
             }
         }
 
@@ -74,6 +74,9 @@ namespace NTH.Core.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.UseCollation("utf8mb4_0900_ai_ci")
                 .HasCharSet("utf8mb4");
 
@@ -678,8 +681,6 @@ namespace NTH.Core.Data
             
 
 
-            OnModelCreatingPartial(modelBuilder);
-            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
