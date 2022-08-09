@@ -31,10 +31,6 @@ namespace NTH.TravelAPI.Controllers.Service_Contact
             }
             var homepage = await _context.ServiceContacts.Where<ServiceContact>(item => (item.Lang == lang)).FirstOrDefaultAsync();
 
-            if (homepage == null)
-            {
-                return NotFound();
-            }
 
             return homepage;
         }

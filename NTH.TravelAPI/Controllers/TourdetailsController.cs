@@ -64,10 +64,7 @@ namespace NTH.TravelAPI.Controllers
             }
             var tourdetail = await _context.TourDetails.Where<Tourdetail>(item => item.TourMasterId == tourId && item.Lang == lang).FirstOrDefaultAsync();
 
-            if (tourdetail == null)
-            {
-                return NotFound();
-            }
+            
 
             return tourdetail;
         }

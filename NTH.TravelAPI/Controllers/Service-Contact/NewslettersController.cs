@@ -33,10 +33,7 @@ namespace NTH.TravelAPI.Controllers.Service_Contact
           }
             var newsletter = await _context.Newsletters.Where<Newsletter>(item => (item.Lang == lang)).FirstOrDefaultAsync();
 
-            if (newsletter == null)
-            {
-                return NotFound();
-            }
+           
 
             return newsletter;
         }

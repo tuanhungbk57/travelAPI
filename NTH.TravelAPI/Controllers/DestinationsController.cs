@@ -58,14 +58,10 @@ namespace NTH.TravelAPI.Controllers
             {
                 return NotFound();
             }
-            var destination = await _context.Destinations.Where<Destination>(item => (item.Lang == lang && item.DestinationURL == path)).ToListAsync();
+            var destination = await _context.Destinations.Where<Destination>(item => (item.Lang == lang && item.DestinationURL == path)).FirstOrDefaultAsync();
 
-            if (destination.Count == 0)
-            {
-                return NotFound();
-            }
 
-            return destination[0];
+            return destination;
         }
         // PUT: api/Destinations/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

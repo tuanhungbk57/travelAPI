@@ -32,10 +32,7 @@ namespace NTH.TravelAPI.Controllers
           }
             var destinationInfo = await _context.DestinationInfos.Where<DestinationInfo>(item => (item.Lang == lang)).FirstOrDefaultAsync();
 
-            if (destinationInfo == null)
-            {
-                return NotFound();
-            }
+            
 
             return destinationInfo;
         }

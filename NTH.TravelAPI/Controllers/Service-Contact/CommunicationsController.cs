@@ -31,10 +31,6 @@ namespace NTH.TravelAPI.Controllers.Service_Contact
           }
             var communication = await _context.Communications.Where<Communication>(item => (item.Lang == lang)).FirstOrDefaultAsync();
 
-            if (communication == null)
-            {
-                return NotFound();
-            }
 
             return communication;
         }
