@@ -298,3 +298,5 @@ G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\System.Data.DB2.En
 G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\DevExtreme.AspNet.Data.dll
 G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\System.Net.Http.Formatting.dll
 G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\System.Web.Http.dll
+G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\MailKit.dll
+G:\2022\Project\API\NTH.Travel\NTH.TravelAPI\bin\Debug\net6.0\MimeKit.dll

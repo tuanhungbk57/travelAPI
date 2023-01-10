@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace NTH.TravelAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DestinationMastersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -105,6 +107,7 @@ namespace NTH.TravelAPI.Controllers
                 return NotFound();
             }
             var destinationMaster = await _context.DestinationMasters.FindAsync(id);
+            //var destination = await _context.Destinations.Where<Destination>(item =>(item.DestinationURL == destinationMaster.DestinationURL)).ToListAsync();
             if (destinationMaster == null)
             {
                 return NotFound();

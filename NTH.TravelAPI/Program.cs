@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NTH.Core.Data;
 using NTH.Core.Database;
+using NTH.Core.Email;
 using NTH.Core.Helper;
+using NTH.Core.Models.Email;
 using NTH.Travel.BL.Contracts;
 using NTH.Travel.BL.Repository;
 using NTH.Travel.BL.Service;
@@ -20,6 +22,9 @@ builder.Services.AddScoped<IDbUtil, DbUtil>();
 builder.Services.AddTransient<IUploadService, UploadService>();
 builder.Services.AddControllers();
 
+// email
+builder.Services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("devCorsPolicy", builder => {

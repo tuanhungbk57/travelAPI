@@ -12,5 +12,6 @@ namespace NTH.Core.Models
         public string? ImageURL { get; set; }
         public string? DestinationName { get; set; }
         public string? DestinationURL { get; set; }
+        public bool? IsSpecial { get; set; }
     }
 }

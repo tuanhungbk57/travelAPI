@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NTH.Core.Data;
 using NTH.Core.Models;
+using NTH.Travel.BL.Contracts;
 using System.Data;
 
 namespace NTH.TravelAPI.Controllers.Website.ServiceContact
@@ -12,10 +13,12 @@ namespace NTH.TravelAPI.Controllers.Website.ServiceContact
     public class ContactController : ControllerBase
     {
         private readonly DapperContext _dapper;
+        private readonly IContactRepo _contactRepo;
 
-        public ContactController(DapperContext dapper)
+        public ContactController(DapperContext dapper, IContactRepo contactRepo)
         {
             _dapper = dapper;
+            _contactRepo = contactRepo;
         }
 
         /// <summary>
@@ -73,5 +76,9 @@ namespace NTH.TravelAPI.Controllers.Website.ServiceContact
                 return des;
             }
         }
+
+        
+
+        
     }
 }

@@ -108,5 +108,26 @@ namespace NTH.Travel.BL.Service
             _context.FolderImages.Add(folderimg);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<int> DeleteFile(string typeName, string folderName, string fileName)
+        {
+            var routPath = Configuration["Folder:rootPath"];
+            var path = $@"{routPath}/{typeName}/{folderName}/{fileName}";
+            try
+            {
+                // Check if file exists with its full path    
+                if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), path)))
+                {
+                    // If file found, delete it    
+                    File.Delete(Path.Combine(Directory.GetCurrentDirectory(), path));
+                    return 1;
+                }
+                else return 0;
+            }
+            catch (IOException ioExp)
+            {
+                return -1;
+            }
+        }
     }
 }

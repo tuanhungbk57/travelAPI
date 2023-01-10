@@ -42,5 +42,15 @@ namespace NTH.Travel.BL.Repository
                 return company;
             }
         }
+        public async Task<string>   GetEmailTemplate(string key)
+        {
+            var procedureName = "Proc_EmailTemplate_GetByKey";
+            using (var connection = _context.CreateConnection())
+            {
+                var temp = await connection.QueryFirstOrDefaultAsync<object>
+                    (procedureName, new { v_key = key }, commandType: CommandType.StoredProcedure);
+                return (string)temp;
+            }
+        }
     }
 }

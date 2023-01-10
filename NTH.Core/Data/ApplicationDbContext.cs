@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 using NTH.Core.Models;
+using NTH.Core.Models.Blog;
 
 namespace NTH.Core.Data
 {
@@ -70,6 +71,12 @@ namespace NTH.Core.Data
         public virtual DbSet<Newsletter> Newsletters { get; set; } = null!;
         public virtual DbSet<Team> Teams { get; set; } = null!;
         public virtual DbSet<DestinationInfo> DestinationInfos { get; set; } = null!;
+        public virtual DbSet<Footer> Footers { get; set; } = null!;
+        public virtual DbSet<BlogMaster> BlogMasters { get; set; } = null!;
+        public virtual DbSet<Blogg> Blogs { get; set; } = null!;
+        public virtual DbSet<BlogDetail> BlogDetails { get; set; } = null!;
+        public virtual DbSet<BlogPost> BlogPosts { get; set; } = null!;
+        public virtual DbSet<BlogGeneral> BlogGenerals { get; set; } = null!;
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -677,8 +684,32 @@ namespace NTH.Core.Data
             {
                 entity.ToTable("destinationinfo");
             });
+            modelBuilder.Entity<Footer>(entity =>
+            {
+                entity.ToTable("footer");
+            });
+            modelBuilder.Entity<BlogMaster>(entity =>
+            {
+                entity.ToTable("blogmaster");
+            });
+            modelBuilder.Entity<Blogg>(entity =>
+            {
+                entity.ToTable("blog");
+            });
+            modelBuilder.Entity<BlogDetail>(entity =>
+            {
+                entity.ToTable("blogdetail");
+            });
+            modelBuilder.Entity<BlogPost>(entity =>
+            {
+                entity.ToTable("blogpost");
+            });
+            modelBuilder.Entity<BlogGeneral>(entity =>
+            {
+                entity.ToTable("bloggeneral");
+            });
 
-            
+
 
 
         }

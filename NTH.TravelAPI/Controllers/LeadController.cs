@@ -5,11 +5,13 @@ using Newtonsoft.Json;
 using DevExtreme.AspNet.Data;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using NTH.Core.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NTH.TravelAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class LeadController : Controller
     {
         private readonly ApplicationDbContext _context;

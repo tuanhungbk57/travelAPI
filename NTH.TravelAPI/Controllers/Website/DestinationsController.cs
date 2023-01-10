@@ -40,10 +40,31 @@ namespace NTH.TravelAPI.Controllers.Website
             using (var connection = _dapper.CreateConnection())
             {
                 var des = await connection.QueryAsync<object>
-                    (procedureName, new {v_lang= lang}, commandType: CommandType.StoredProcedure);
+                    (procedureName, new { v_lang = lang, v_isSpecial = false }, commandType: CommandType.StoredProcedure) ;
                 return des;
             }
             
+        }
+
+        // GET: api/Destinations/vi/lang
+        /// <summary>
+        /// Lấy về danh sách Des theo ngôn ngữ để hiển thị lên trang chủ
+        /// </summary>
+        /// <param name="lang"></param>
+        /// <returns></returns>
+        [HttpGet("{lang}/special/lang")]
+        public async Task<IEnumerable<object>> GetSpecialDestinationsByLang(string lang)
+        {
+            var procedureName = "Proc_Destination_GetListByLang";
+            //var parameters = new DynamicParameters();
+            //parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);
+            using (var connection = _dapper.CreateConnection())
+            {
+                var des = await connection.QueryAsync<object>
+                    (procedureName, new { v_lang = lang, v_isSpecial = true }, commandType: CommandType.StoredProcedure) ;
+                return des;
+            }
+
         }
 
         /// <summary>
@@ -82,51 +103,51 @@ namespace NTH.TravelAPI.Controllers.Website
             return destination;
         }
 
-        // PUT: api/Destinations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDestination(int id, Destination destination)
-        {
-            if (id != destination.Id)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Destinations/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutDestination(int id, Destination destination)
+        //{
+        //    if (id != destination.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(destination).State = EntityState.Modified;
+        //    _context.Entry(destination).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DestinationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!DestinationExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        // POST: api/Destinations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Destination>> PostDestination(Destination destination)
-        {
-          if (_context.Destinations == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Destinations'  is null.");
-          }
-            _context.Destinations.Add(destination);
-            await _context.SaveChangesAsync();
+        //// POST: api/Destinations
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Destination>> PostDestination(Destination destination)
+        //{
+        //  if (_context.Destinations == null)
+        //  {
+        //      return Problem("Entity set 'ApplicationDbContext.Destinations'  is null.");
+        //  }
+        //    _context.Destinations.Add(destination);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDestination", new { id = destination.Id }, destination);
-        }
+        //    return CreatedAtAction("GetDestination", new { id = destination.Id }, destination);
+        //}
 
        
 

@@ -1,18 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NTH.Core.Data;
 using NTH.Travel.BL.Contracts;
+using System.Data;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NTH.TravelAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UploadController : ControllerBase
     {
         private readonly IUploadService _uploadService;
-        public UploadController(IUploadService uploadService)
+        private readonly DapperContext _dapper;
+
+        public UploadController(IUploadService uploadService, DapperContext dapper)
         {
             _uploadService = uploadService;
+            _dapper = dapper;
         }
         [HttpPost("{type}/{folerId}"), DisableRequestSizeLimit]
         public async Task<IActionResult> Upload(int type, int folerId)
@@ -76,5 +84,38 @@ namespace NTH.TravelAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
+        [HttpDelete("{typename}/{foldername}/{filename}/{id}")]
+        public async Task<IActionResult> DeteleFile(string typename, string foldername, string filename, int id)
+        {
+            try
+            {
+                
+
+                var result = await _uploadService.DeleteFile(typename, foldername, filename);
+                if(result == 0)
+                {
+                    return Ok("False");
+                }
+                var procedureName = "Proc_Folderimage_Delete";
+                //var parameters = new DynamicParameters();
+                //parameters.Add("Id", id, DbType.Int32, ParameterDirection.Input);
+                using (var connection = _dapper.CreateConnection())
+                {
+                    var obj = new
+                    {
+                        v_id = id
+                    };
+                    var des = await connection.ExecuteAsync
+                        (procedureName, obj, commandType: CommandType.StoredProcedure);
+                }
+                return Ok("Success");
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
+
     }
 }

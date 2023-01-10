@@ -11,5 +11,6 @@ namespace NTH.Travel.BL.Contracts
     {
         public Task<IEnumerable<Contact>> GetContacts();
         public Task<IEnumerable<Contact>> GetContactsList();
+        public Task<string> GetEmailTemplate(string key);
     }
 }

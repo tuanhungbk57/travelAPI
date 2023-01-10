@@ -44,14 +44,14 @@ namespace NTH.TravelAPI.Controllers.Website
         /// <param name="path">path của trip</param>
         /// <param name="lang">ngôn ngữ</param>
         /// <returns></returns>
-        [HttpGet("{path}/{lang}")]
-        public async Task<object> GetTrip(string path, string lang)
+        [HttpGet("{despath}/{trippath}/{path}/{lang}")]
+        public async Task<object> GetTrip(string despath, string trippath, string path, string lang)
         {
             var procedureName = "Proc_Tour_GetByPathAndLang";
             using (var connection = _dapper.CreateConnection())
             {
                 var des = await connection.QueryFirstOrDefaultAsync<object>
-                    (procedureName, new { v_lang = lang, v_path = path }, commandType: CommandType.StoredProcedure);
+                    (procedureName, new { v_lang = lang, v_despath = despath, v_trippath = trippath,  v_path = path }, commandType: CommandType.StoredProcedure);
                 return des;
             }
         }
